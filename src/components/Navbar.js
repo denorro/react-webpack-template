@@ -1,55 +1,36 @@
-class Navbar extends React.Component {
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-    constructor(){
-        super();
-        this.state = {
+const Navbar = () => {
 
-        }
-    }
-
-    render(){
-        return (
+    return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">Undecisive</a>
+                <a className="navbar-brand" href="#">App Name</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link">
+                                Home <span className="sr-only">(current)</span>
+                            </Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Services
+                                Dropdown
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a className="dropdown-item" href="#">Custom Software Development</a>
+                                <Link className="dropdown-item" to="#">Option 1</Link>
                                 <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Multi-platform Mobile App Development</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Application Architecture</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Database Design</a>
-                                <div className="dropdown-divider"></div>
-                                <a className="dropdown-item" href="#">Data Backup</a>
+                                <Link className="dropdown-item" to="#">Option 2</Link>
                             </div>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Clients</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Meet the Team</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">About Us</a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Contact Us</a>
+                            <Link to="/clients" activeClassName="active" className="nav-link">Nav Link 1</Link>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">
@@ -59,6 +40,5 @@ class Navbar extends React.Component {
                 </div>
             </nav>
         )
-    }
 }
 export default Navbar;
