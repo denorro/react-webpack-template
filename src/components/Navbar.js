@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const Navbar = () => {
 
     return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <a className="navbar-brand" href="#">Expensify</a>
+                <NavLink className="navbar-brand" to="#">Expensify</NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -14,9 +14,9 @@ const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link">
+                            <NavLink to="/" className="nav-link">
                                 Home <span className="sr-only">(current)</span>
-                            </Link>
+                            </NavLink>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -24,23 +24,31 @@ const Navbar = () => {
                                 Expense Categories
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="#">Travel Expenses (Gas, Lodging, Travel Dining, etc...)</Link>
+                                <NavLink className="dropdown-item" to="#">Travel Expenses (Gas, Lodging, Travel Dining, etc...)</NavLink>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" to="#">Food Expenses (Groceries for home, Lunch, Charity, etc...)</Link>
+                                <NavLink className="dropdown-item" to="#">Food Expenses (Groceries for home, Lunch, Charity, etc...)</NavLink>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" to="#">Home (Repairs, Utilities, Landscape, etc...)</Link>
+                                <NavLink className="dropdown-item" to="#">Home (Repairs, Utilities, Landscape, etc...)</NavLink>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" to="#">Auto (Repairs, Service Checkups, Insurance, etc...)</Link>
+                                <NavLink className="dropdown-item" to="#">Auto (Repairs, Service Checkups, Insurance, etc...)</NavLink>
                             </div>
                         </li>
                         <li className="nav-item">
-                            <Link to="/team" activeClassName="active" className="nav-link">Meet the Team</Link>
+                            <NavLink to="/expense/new" activeClassName="active" className="nav-link">
+                                <i className="ion-plus-circled"></i><span> Add Expense</span>
+                            </NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/careers" activeClassName="active" className="nav-link">Careers</Link>
+                            <NavLink to="/team" activeClassName="active" className="nav-link">Meet the Team</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/contact" activeClassName="active" className="nav-link">Contact Us</Link>
+                            <NavLink to="/careers" activeClassName="active" className="nav-link">Careers</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/contact" activeClassName="active" className="nav-link">Contact Us</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink to="/about" activeClassName="active" className="nav-link">About Us</NavLink>
                         </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0">

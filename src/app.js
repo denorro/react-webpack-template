@@ -1,26 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import NotFoundContainer from "./containers/NotFoundContainer";
-import HomeContainer from "./containers/HomeContainer";
+import {Provider} from 'react-redux';
+import configureStore from './store/configureStore';
 import './styles/styles.scss';
+import AppRouter from "./router/AppRouter";
 
-class App extends React.Component {
-
-    constructor(){
-        super();
-    }
-
-    render(){
-        return (
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={HomeContainer} />
-                    <Route path="*" component={NotFoundContainer} />
-                </Switch>
-            </BrowserRouter>
-        )
-    }
-}
-
-ReactDOM.render(<App />, document.getElementById('app'));
+const store = configureStore();
+const jsx = (
+    <Provider store={store}>
+        <AppRouter/>
+    </Provider>
+)
+ReactDOM.render(jsx, document.getElementById('app'));

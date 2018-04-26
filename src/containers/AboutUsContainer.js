@@ -1,9 +1,10 @@
 import React from 'react';
+import Navbar from "../components/Navbar";
 
-const NotFoundContainer = () => {
+const AboutUsContainer = () => {
     return (
         <div>
-            <h1 className="text-center">Not Found</h1>
+            <h1 className="text-center">About Us</h1>
             <hr />
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas mollis turpis, ut aliquam erat auctor bibendum. In tincidunt imperdiet libero in pretium. Mauris tempus in ligula et accumsan. Etiam sit amet ex sed ligula sagittis tempor. Nunc eget convallis est. Pellentesque vel arcu ligula. Vivamus mollis nisl in molestie condimentum. Curabitur tincidunt euismod tellus, eu lobortis nisl cursus elementum. In hac habitasse platea dictumst. Cras rhoncus, dui sit amet placerat congue, lacus dolor imperdiet ex, et euismod nisl urna a massa. Integer consectetur lorem vel tellus efficitur interdum. Phasellus feugiat tristique fringilla. Cras felis turpis, eleifend ac ex ut, pretium aliquet elit. Phasellus consectetur accumsan ipsum mattis sollicitudin. In hac habitasse platea dictumst.
@@ -20,4 +21,4 @@ const NotFoundContainer = () => {
     )
 }
 
-export default NotFoundContainer;
+export default AboutUsContainer;
