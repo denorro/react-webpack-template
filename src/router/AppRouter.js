@@ -7,6 +7,7 @@ import AboutUsContainer from "../containers/AboutUsContainer";
 import NotFoundContainer from "../containers/NotFoundContainer";
 import ExpenseContainer from "../containers/ExpenseContainer";
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 class AppRouter extends React.Component {
     constructor(){
@@ -29,6 +30,7 @@ class AppRouter extends React.Component {
                             <Route path="*" component={NotFoundContainer} />
                         </Switch>
                     </div>
+                    <Footer />
                 </div>
             </BrowserRouter>
         )

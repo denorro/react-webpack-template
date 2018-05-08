@@ -1,6 +1,5 @@
 import React from 'react';
-import ExpenseList from "../components/ExpenseList";
-import { connect } from 'react-redux';
+import ExpenseContainer from "./ExpenseContainer";
 
 class HomeContainer extends React.Component{
     constructor(){
@@ -10,17 +9,9 @@ class HomeContainer extends React.Component{
     render() {
         return (
             <div>
-                <ExpenseList expenseList={this.props.expenseList}/>
+                <ExpenseContainer />
             </div>
         )
     }
 }
-
-const mapStateToProps = state => {
-    console.log(state);
-    return {
-        expenseList: state.expenses.expenseList
-    }
-}
-
-export default connect(mapStateToProps)(HomeContainer);
+export default HomeContainer;
