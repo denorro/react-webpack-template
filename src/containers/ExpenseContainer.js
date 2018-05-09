@@ -3,18 +3,22 @@ import ExpenseForm from "../components/ExpenseForm";
 import ExpenseList from '../components/ExpenseList';
 import {connect} from "react-redux";
 import { bindActionCreators } from 'redux';
-import {addExpense} from "../actions/expenses";
+import {addExpense, removeExpense} from "../actions/expenses";
 
 class ExpenseContainer extends Component {
     constructor(props){
         super(props);
         this.submitExpense = this.submitExpense.bind(this);
+        this.removeExpense = this.removeExpense.bind(this);
     }
 
     submitExpense(expense){
         this.props.addExpense(expense);
     }
 
+    removeExpense(expense){
+        this.props.removeExpense(expense);
+    }
 
     toggleNewOrEditForm(){
         if(undefined !== this.props.location && this.props.location.pathname.contains('/expense/edit')){
@@ -22,12 +26,12 @@ class ExpenseContainer extends Component {
         }
         else {
             return <div>
-                <div className="card card-body bg-secondary">
+                <div className="card card-body bg-well">
                     <ExpenseForm submitExpense={this.submitExpense} />
                 </div>
                 <hr/>
                 <br/>
-                <ExpenseList expenseList={this.props.expenseList}/>
+                <ExpenseList expenseList={this.props.expenseList} deleteExpense={this.removeExpense} />
             </div>;
         }
     }
@@ -42,7 +46,6 @@ class ExpenseContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         expenseList: state.expenses.expenseList
     }
@@ -50,7 +53,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return bindActionCreators({
-        addExpense: addExpense
+        addExpense: addExpense,
+        removeExpense: removeExpense
     }, dispatch);
 }
 export default connect(mapStateToProps,mapDispatchToProps)(ExpenseContainer);

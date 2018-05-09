@@ -1,6 +1,6 @@
 
 const defaultState = {
-    expenseList: [],
+    expenseList: JSON.parse(localStorage.getItem('@expenseList')),
     currentSelectedExpense: '',
     goodMessages: [],
     badMessages: []
@@ -11,8 +11,8 @@ export default ( state = defaultState, action) => {
         case 'ADD_EXPENSE':
             try{
                 const newList = [...state.expenseList, action.expense];
-                localStorage.setItem('@issueList', JSON.stringify(newList));
-                console.log(JSON.parse(localStorage.getItem('@issueList')));
+                localStorage.setItem('@expenseList', JSON.stringify(newList));
+                console.log(JSON.parse(localStorage.getItem('@expenseList')));
             }
             catch(error){
                 state.badMessages.push('Error saving issue to storage!');
@@ -20,12 +20,14 @@ export default ( state = defaultState, action) => {
             return {
                 ...state,
                 expenseList:[...state.expenseList, action.expense]
-
             }
         case 'REMOVE_EXPENSE':
+            console.log(state);
+            const newList = state.expenseList.filter(expense => expense.id !== action.id);
+            localStorage.setItem('@expenseList', JSON.stringify(newList));
             return {
                 ...state,
-                expenseList: state.expenseList.filter( (id) => id != action.id)
+                expenseList: [...newList]
             }
         case 'EDIT_EXPENSE':
             return state.map(expense => {
@@ -40,15 +42,6 @@ export default ( state = defaultState, action) => {
                }
             });
         default:
-            let savedList = [];
-            const value = localStorage.getItem('@issueList');
-            if(value !== null){
-                savedList = JSON.parse(value);
-                state = {
-                    ...state,
-                    expenseList: [...savedList]
-                };
-            }
             return state;
     }
 }

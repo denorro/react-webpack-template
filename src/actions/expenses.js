@@ -1,6 +1,6 @@
 import uuid from 'uuid';
 
-export const addExpense = ({name='', category='General Category', description = '',notes = '',cost = 0,created = Date.now(), updated = Date.now()} = {}) => ({
+export const addExpense = ({name='', category='General Category', description = '',notes = '',cost = 0, date = Date.now(), created = Date.now(), updated = Date.now()} = {}) => ({
    type: 'ADD_EXPENSE',
    expense: {
        id: uuid(),
@@ -10,7 +10,8 @@ export const addExpense = ({name='', category='General Category', description = 
        notes,
        cost,
        created,
-       updated
+       updated,
+       date
    }
 });
 

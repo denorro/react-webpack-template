@@ -21,6 +21,7 @@ let selectedExpense = {
     cost:'',
     category: '',
     description:'',
+    date:'',
     created:'',
     updated:''
 }
@@ -29,16 +30,22 @@ class ExpenseList extends Component {
     constructor(props){
         super(props);
         this.state={
-            modalIsOpen: false
+            modalIsOpen: false,
+            modalFormDisabled: true
         }
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
         this.truncateLongText = this.truncateLongText.bind(this);
+        this.deleteExpense = this.deleteExpense.bind(this);
     }
 
     componentDidMount(){
         Modal.setAppElement('body');
+    }
+
+    deleteExpense(expense){
+        this.props.removeExpense(expense);
     }
 
     openModal(expense) {
@@ -51,7 +58,8 @@ class ExpenseList extends Component {
             description: expense.description,
             created: expense.created,
             updated: expense.updated,
-            notes: expense.notes
+            notes: expense.notes,
+            date: expense.date
         }
     }
 
@@ -77,6 +85,7 @@ class ExpenseList extends Component {
                 <td>{expense.category}</td>
                 <td>{this.truncateLongText(expense.description)}</td>
                 <td>{this.truncateLongText(expense.notes)}</td>
+                <td>{expense.date}</td>
                 <td>{expense.created}</td>
                 <td>{expense.updated}</td>
                 <td>
@@ -92,7 +101,7 @@ class ExpenseList extends Component {
                             </Link>
                         </div>
                         <div className="col-xs-8 offset-lg-2 offset-xl-0 col-xl-3">
-                            <button className="btn btn-link" title="Delete Expense">
+                            <button onClick={() => this.props.deleteExpense(expense)} className="btn btn-link" title="Delete Expense">
                                 <i className="ion-trash-a"></i>
                             </button>
                         </div>
@@ -114,6 +123,7 @@ class ExpenseList extends Component {
                             <th>Category</th>
                             <th>Description</th>
                             <th>Notes</th>
+                            <th>Date of Expense</th>
                             <th>Creation Date</th>
                             <th>Last Modified Date</th>
                             <th></th>
@@ -137,6 +147,7 @@ class ExpenseList extends Component {
                     style={customStyles}
                     contentLabel="Example Modal">
                     <h2>{selectedExpense.name}</h2>
+                    <p>{`Expense ID: ${selectedExpense.id}`}</p>
                     <hr />
                     <form>
                         <div className="form-group">
@@ -152,6 +163,10 @@ class ExpenseList extends Component {
                             <textarea className="form-control" value={selectedExpense.notes} disabled={true}></textarea>
                         </div>
                         <div className="form-group">
+                            <label>Expense Date</label>
+                            <input type="date" className="form-control" value={selectedExpense.date} disabled={true} />
+                        </div>
+                        <div className="form-group">
                             <label>Creation Date</label>
                             <input type="text" className="form-control" value={selectedExpense.created} disabled={true} />
                         </div>
@@ -161,7 +176,14 @@ class ExpenseList extends Component {
                         </div>
                     </form>
                     <Link to={`/expense/edit/${selectedExpense.id}`} className="btn btn-warning btn-block" onClick={this.closeModal}>Edit</Link>
-                    <button className="btn btn-danger btn-block" onClick={this.closeModal}>Delete</button>
+                    <button
+                        className="btn btn-danger btn-block"
+                        onClick={() => {
+                            this.props.deleteExpense(selectedExpense);
+                            this.closeModal();
+                        }}>
+                        Delete
+                    </button>
                     <button className="btn btn-dark btn-block" onClick={this.closeModal}>Close</button>
                 </Modal>
                 {this.renderExpenseList()}
