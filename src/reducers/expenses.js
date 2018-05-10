@@ -30,7 +30,7 @@ export default ( state = defaultState, action) => {
                 expenseList: [...newList]
             }
         case 'EDIT_EXPENSE':
-            return state.map(expense => {
+            return state.expense.map(expense => {
                if(expense.id === action.id){
                    return {
                        ...expense,

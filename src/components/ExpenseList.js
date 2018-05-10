@@ -82,7 +82,7 @@ class ExpenseList extends Component {
             <tr key={expense.id}>
                 <td>{expense.name}</td>
                 <td>${expense.cost}</td>
-                <td>{expense.category}</td>
+                <td>{expense.category.substring(0, expense.category.indexOf(' '))}</td>
                 <td>{this.truncateLongText(expense.description)}</td>
                 <td>{this.truncateLongText(expense.notes)}</td>
                 <td>{expense.date}</td>
@@ -124,8 +124,8 @@ class ExpenseList extends Component {
                             <th>Description</th>
                             <th>Notes</th>
                             <th>Date of Expense</th>
-                            <th>Creation Date</th>
-                            <th>Last Modified Date</th>
+                            <th>Created</th>
+                            <th>Updated</th>
                             <th></th>
                         </tr>
                         </thead>
